@@ -6,6 +6,7 @@ import Layout from "./structure/Layout";
 import Page from "./structure/Home";
 import About from "./structure/page/About";
 import Contact from "./structure/page/Contact";
+import DetailsBook from "./structure/page/Details";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,12 @@ const router = createBrowserRouter([
         element: <Page />,
       },
       {
-        path: "contact",
+        path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/details/:id",
+        element: <DetailsBook />,
       },
     ],
   },

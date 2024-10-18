@@ -7,6 +7,7 @@ import Page from "./structure/Home";
 import About from "./structure/page/About";
 import Contact from "./structure/page/Contact";
 import DetailsBook from "./structure/page/Details";
+import Payment from "./structure/page/Payment";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <DetailsBook />,
+      },
+      {
+        path: "/payment/:id",
+        element: <Payment />,
       },
     ],
   },

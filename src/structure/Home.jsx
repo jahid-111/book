@@ -4,7 +4,7 @@ import CardBook from "../component/CardBook";
 
 const BookList = () => {
   const [books, setBooks] = useState([]); // Fixed variable name from 'book' to 'books'
-  console.log(books);
+  // console.log(books);
   useEffect(() => {
     const fetchData = async () => {
       try {

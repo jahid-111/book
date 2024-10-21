@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import BasicArea from "../../../component/SellChart";
-
+import DropDown from "../../../component/DropDown";
+import PostNewBook from "../../../component/PostNewBook";
+import ReactDOM from "react-dom";
 const DashList = ({ value }) => {
   const [books, setBooks] = useState([]);
-  console.log(value);
+  const [modal, setModal] = useState(false);
+  // console.log(modal);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,8 +21,18 @@ const DashList = ({ value }) => {
     fetchData();
   }, []);
 
+  const handlePost = () => {
+    setModal((p) => !p);
+  };
+
   return (
     <div className="mx-auto w-full">
+      <button
+        onClick={() => handlePost()}
+        className=" border px-4 py-2 rounded-md"
+      >
+        Add new +
+      </button>
       <table className="table">
         <thead>
           <tr>
@@ -57,29 +70,20 @@ const DashList = ({ value }) => {
                 </span>
               </td>
               <td>$ 9999</td>
-              <th>
-                {value ? (
-                  <BasicArea />
-                ) : (
-                  <button className=" rounded-md hover:bg-gray-600 border border-amber-200 px-5 py-2">
-                    Action
-                  </button>
-                )}
-              </th>
+              <th>{value ? <BasicArea /> : <DropDown book={book} />}</th>
             </tr>
           ))}
         </tbody>
-        {/* foot */}
-        {/* <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
-            </tr>
-          </tfoot> */}
       </table>
+      {modal &&
+        ReactDOM.createPortal(
+          <PostNewBook
+            onClose={() => setModal(false)}
+            addProduct={true}
+            books={books}
+          />,
+          document.getElementById("modal")
+        )}
     </div>
   );
 };

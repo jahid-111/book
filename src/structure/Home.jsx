@@ -8,7 +8,7 @@ const BookList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_BOOK_SERVER);
+        const response = await axios.get("http://localhost:3000/books");
         setBooks(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -20,8 +20,6 @@ const BookList = () => {
 
   return (
     <div>
-      <h1>Book List</h1>
-
       <div className="  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 ">
         {books.map((book) => (
           <CardBook key={book.id} book={book} />
